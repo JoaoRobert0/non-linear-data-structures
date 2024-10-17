@@ -3,10 +3,12 @@ package trees.binarysearch;
 public class BinarySearchTree {
     
     private Node root;
-    private int size = 0;
+    private int size;
 
+    // Initialize the BST
     public BinarySearchTree() {
         this.root = null;
+        this.size = 0;
     }
 
     public boolean isEmpty() {
@@ -20,7 +22,27 @@ public class BinarySearchTree {
     }
 
     private void insertRecursive(Node root, int key) {
-        
+        if (isEmpty()) {
+            Node node = new Node(key);
+            this.root = node;
+        } else if (key <= root.getKey()) {
+            if (root.getLeftChild() == null) {
+                Node node = new Node(key);
+                root.setLeftChild(node);
+            } else {
+                // Call the function recursive to the left side
+                insertRecursive(root.getLeftChild(), key);
+            }
+        } else if (key > root.getKey()) {
+            if (root.getRightChild() == null) {
+                Node node = new Node(key);
+                root.setRightChild(node);
+            } else {
+                // Call the function recursive to the right side
+                insertRecursive(root.getRightChild(), key);
+            }
+        }
+
     } 
 
 
