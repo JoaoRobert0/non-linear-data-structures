@@ -11,6 +11,10 @@ public class BinarySearchTree {
         this.size = 0;
     }
 
+    public int getSize() {
+        return this.size;
+    }
+
     public boolean isEmpty() {
         if (this.root == null) return true;
         return false;
@@ -46,4 +50,29 @@ public class BinarySearchTree {
         }
 
     } 
+
+    public void displayPreOrder() {
+        int[] result = new int[size];
+        preOrderRec(this.root, result, 0);
+        
+        for (int i : result) {
+            System.out.print(i + ", ");
+        }
+
+        System.out.println();
+    }
+
+    private int preOrderRec(Node root, int[] result, int index) {
+        if (root == null) {
+            return index; // Base case
+        }
+        result[index] = root.getKey();
+        index++;
+        
+        index = preOrderRec(root.getLeftChild(), result, index);
+        index = preOrderRec(root.getRightChild(), result, index);
+
+        return index;
+    }
+
 }
