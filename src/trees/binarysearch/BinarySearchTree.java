@@ -71,6 +71,25 @@ public class BinarySearchTree {
         }
     }
 
+    public boolean search(int key) {
+        boolean exist = searchRec(this.root, key);
+        return exist;
+    }
+
+    public boolean searchRec(Node root, int key) {
+        if (root == null) { // Base case
+            return false;
+        }
+
+        if (key == root.getKey()) {
+            return true;
+        }
+
+        if (key <= root.getKey()) return searchRec(root.getLeftChild(), key);
+        else return searchRec(root.getRightChild(), key);
+
+    }
+
     public void displayPreOrder() {
         int[] result = new int[size];
         preOrderRec(this.root, result, 0);
