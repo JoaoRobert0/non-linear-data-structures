@@ -28,6 +28,7 @@ public class BinarySearchTree {
         } else if (key <= root.getKey()) {
             if (root.getLeftChild() == null) {
                 Node node = new Node(key);
+                node.setFather(root);
                 root.setLeftChild(node);
             } else {
                 // Call the function recursive to the left side
@@ -36,6 +37,7 @@ public class BinarySearchTree {
         } else if (key > root.getKey()) {
             if (root.getRightChild() == null) {
                 Node node = new Node(key);
+                node.setFather(root);
                 root.setRightChild(node);
             } else {
                 // Call the function recursive to the right side
@@ -44,6 +46,4 @@ public class BinarySearchTree {
         }
 
     } 
-
-
 }
