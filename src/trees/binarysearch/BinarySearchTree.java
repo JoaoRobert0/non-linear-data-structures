@@ -49,7 +49,27 @@ public class BinarySearchTree {
             }
         }
 
-    } 
+    }
+
+    public int height() {
+        int height = heightRec(this.root);
+        return height;
+    }
+
+    private int heightRec(Node root) {
+        if (root == null) { // Base case
+            return -1;
+        }
+
+        int heightLeft = heightRec(root.getLeftChild());
+        int heightRight = heightRec(root.getRightChild());
+
+        if (heightLeft >= heightRight) {
+            return 1 + heightLeft;
+        } else {
+            return 1 + heightRight;
+        }
+    }
 
     public void displayPreOrder() {
         int[] result = new int[size];
