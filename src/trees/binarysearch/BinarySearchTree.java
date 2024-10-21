@@ -20,6 +20,28 @@ public class BinarySearchTree {
         return false;
     }
 
+    public boolean remove(int key) {
+        Node node = find(key);
+        
+        if (node != null) {
+            Node father = node.getFather();
+
+            if (father == null) {
+                root = null;
+            } else {
+                if (father.getLeftChild() == node) {
+                    father.setLeftChild(null);
+                } else {
+                    father.setRightChild(null);
+                }
+                node.setFather(null);
+            }
+            return true;
+        }
+
+        return false;
+    }
+    
     public void insert(int key) {
         insertRecursive(this.root, key);
         size++;
