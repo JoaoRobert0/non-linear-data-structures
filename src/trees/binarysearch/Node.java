@@ -17,6 +17,20 @@ public class Node {
         this.rightChild = null;
     }
 
+    @Override
+    public String toString() {
+        String fatherKey = (father != null) ? String.valueOf(father.getKey()) : "null";
+        String leftChildKey = (leftChild != null) ? String.valueOf(leftChild.getKey()) : "null";
+        String rightChildKey = (rightChild != null) ? String.valueOf(rightChild.getKey()) : "null";
+        
+        return "Node{" +
+                "key=" + key +
+                ", father=" + fatherKey +
+                ", leftChild=" + leftChildKey +
+                ", rightChild=" + rightChildKey +
+                '}';
+    }
+    
     public int getKey() {
         return key;
     }
