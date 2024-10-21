@@ -71,6 +71,24 @@ public class BinarySearchTree {
         }
     }
 
+    public Node find(int key) {
+        Node node = findRec(this.root, key);
+        return node;
+    }
+
+    private Node findRec(Node root, int key) {
+        if (root == null) { // Base case
+            return null;
+        }
+
+        if (key == root.getKey()) {
+            return root;
+        }
+
+        if (key <= root.getKey()) return findRec(root.getLeftChild(), key);
+        else return findRec(root.getRightChild(), key);
+    }
+
     public boolean search(int key) {
         boolean exist = searchRec(this.root, key);
         return exist;
