@@ -135,4 +135,34 @@ public class BinarySearchTree {
         return index;
     }
 
+    public void displayInOrder() {
+        inOrderRec(this.root);
+        System.out.println();
+    }
+
+    private void inOrderRec(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        inOrderRec(root.getLeftChild());
+        System.out.print(root.getKey() + " ");
+        inOrderRec(root.getRightChild());
+    }
+
+    public void displayPostOrder() {
+        postOrderRec(this.root);
+        System.out.println();
+    }
+
+    private void postOrderRec(Node root) {
+        if (root == null) {
+            return;
+        }
+
+        inOrderRec(root.getLeftChild());
+        inOrderRec(root.getRightChild());
+        System.out.print(root.getKey() + " ");
+    }
+
 }
