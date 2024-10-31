@@ -112,28 +112,20 @@ public class BinarySearchTree {
     }
 
     public void displayPreOrder() {
-        int[] result = new int[size];
-        preOrderRec(this.root, result, 0);
-        
-        for (int i : result) {
-            System.out.print(i + ", ");
-        }
-
+        preOrderRec(this.root);
         System.out.println();
     }
 
-    private int preOrderRec(Node root, int[] result, int index) {
+    private void preOrderRec(Node root) {
         if (root == null) {
-            return index; // Base case
+            return;
         }
-        result[index] = root.getKey();
-        index++;
-        
-        index = preOrderRec(root.getLeftChild(), result, index);
-        index = preOrderRec(root.getRightChild(), result, index);
 
-        return index;
+        System.out.print(root.getKey() + " ");
+        inOrderRec(root.getLeftChild());
+        inOrderRec(root.getRightChild());
     }
+
 
     public void displayInOrder() {
         inOrderRec(this.root);
