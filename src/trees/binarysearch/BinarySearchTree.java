@@ -26,19 +26,50 @@ public class BinarySearchTree {
         if (node != null) {
             Node father = node.getFather();
 
+            // Remove the root
             if (father == null) {
                 root = null;
-            } else {
+                return true;
+            }
+ 
+            // Remove leaf
+            if (node.getLeftChild() == null && node.getRightChild() == null) {
+
+                // Verify which child remove
                 if (father.getLeftChild() == node) {
                     father.setLeftChild(null);
-                } else {
-                    father.setRightChild(null);
+                    return true;
                 }
-                node.setFather(null);
+
+                if (father.getRightChild() == node) {
+                    father.setRightChild(null);
+                    return true;
+                }
             }
-            return true;
+
+            // If the node have one child
+            if (node.getLeftChild() == null || node.getRightChild() == null) {
+                
+                // The right child turns to father
+                // if (node.getLeftChild() == null) {
+                //     node.getFather().setRightChild(node.getRightChild());
+                //     node.getRightChild().setFather(node.getFather());
+                //     return true;
+                // }
+                
+                // // The left child turns to father
+                // if (node.getRightChild() == null) {
+                //     node.getFather().setLeftChild(node.getRightChild());
+                //     node.getRightChild().setFather(node.getFather());
+                //     return true;
+                // }
+            }
+
+            // If the node have two childs
+            // ...
         }
 
+        // The node doesnt exist in the tree (node == null)
         return false;
     }
     
@@ -111,6 +142,13 @@ public class BinarySearchTree {
         else return findRec(root.getRightChild(), key);
     }
 
+    /*
+     * TRAVERSES
+     * Pre Order
+     * In Order
+     * Post Order
+     */
+
     public void displayPreOrder() {
         preOrderRec(this.root);
         System.out.println();
@@ -122,8 +160,8 @@ public class BinarySearchTree {
         }
 
         System.out.print(root.getKey() + " ");
-        inOrderRec(root.getLeftChild());
-        inOrderRec(root.getRightChild());
+        preOrderRec(root.getLeftChild());
+        preOrderRec(root.getRightChild());
     }
 
 
@@ -152,8 +190,8 @@ public class BinarySearchTree {
             return;
         }
 
-        inOrderRec(root.getLeftChild());
-        inOrderRec(root.getRightChild());
+        postOrderRec(root.getLeftChild());
+        postOrderRec(root.getRightChild());
         System.out.print(root.getKey() + " ");
     }
 
